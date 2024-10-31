@@ -1,0 +1,141 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AuthenticationDto {
+  email: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type File {
+  createdAt: DateTime!
+  filename: String!
+  id: Int!
+  initialFilename: String!
+  path: String!
+  updatedAt: DateTime!
+  uri: String!
+}
+
+type Mutation {
+  askRecoveryPasswordCode(email: String!): Boolean!
+  recoverPassword(dto: RecoverPasswordDto!): UserRecoveryPassword!
+  register(dto: SaveUserDto!): User!
+  savePhoto(dto: SavePhotoDto!): Photo!
+  saveUser(dto: SaveUserDto!): User!
+  setCurrentScoreByActivity(dto: [SetCurrentScoreByActivityDto!]!): [Score!]!
+}
+
+type Photo {
+  comment: String
+  createdAt: DateTime!
+  file: File
+  id: Int!
+  image: File!
+  imageFileId: Int
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+  year: Year!
+  yearId: Int!
+}
+
+type Query {
+  getAllPhotos: [Photo!]!
+  getAllScores: [Score!]!
+  getAllScoresCurrent: [Score!]!
+  getAllUser: [User!]!
+  getAllUserParticipate: [User!]!
+  getAllYears: [Year!]!
+  getLoggedUser: User!
+  getPhotoById(id: Float!): Photo!
+  getUserById(id: Int!): User!
+  login(dto: AuthenticationDto!): String!
+  refreshToken: String!
+  validateRecoveryPasswordCode(dto: ValidateRecoveryPasswordCodeDto!): UserRecoveryPassword!
+  validateToken(dto: TokenValidationDto!): Boolean!
+}
+
+input RecoverPasswordDto {
+  code: Float!
+  email: String!
+  password: String!
+}
+
+input SavePhotoDto {
+  comment: String
+  id: Int
+  imageFileId: Int
+}
+
+input SaveUserDto {
+  email: String!
+  firstName: String!
+  id: Int
+  lastName: String
+  login: String!
+  password: String!
+}
+
+type Score {
+  aperitif: Int!
+  dessert: Int!
+  entreeChaude: Int!
+  entreeFroide: Int!
+  id: Int!
+  plat: Int!
+  sorbet: Int!
+  soupe: Int!
+  user: User!
+  year: Year!
+}
+
+input SetCurrentScoreByActivityDto {
+  aperitif: Int
+  dessert: Int
+  entreeChaude: Int
+  entreeFroide: Int
+  plat: Int
+  sorbet: Int
+  soupe: Int
+  userId: Int!
+  yearId: Int!
+}
+
+input TokenValidationDto {
+  token: String!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  firstName: String!
+  id: Int!
+  isParticipatingThisYear: Boolean!
+  lastName: String!
+  login: String!
+  updatedAt: DateTime!
+}
+
+type UserRecoveryPassword {
+  code: Int!
+  createdAt: DateTime!
+  id: Int!
+  usedAt: DateTime
+}
+
+input ValidateRecoveryPasswordCodeDto {
+  code: Float!
+  email: String!
+}
+
+type Year {
+  current: Boolean!
+  id: Int!
+  year: String!
+}
